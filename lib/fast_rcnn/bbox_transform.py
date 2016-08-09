@@ -8,8 +8,8 @@
 import numpy as np
 
 # I speculate
-# Here ex_rois or gt_rois is the array of coordinates of four box vertices
-# just a test
+# Here ex_rois or gt_rois is the array of coordinates of two vertices of box diagonal.
+# 0 and 1 correspond to lower-left vertice's x and y, 2 and 3 correspond to upper-right vertice's x and y
 def bbox_transform(ex_rois, gt_rois):
     ex_widths = ex_rois[:, 2] - ex_rois[:, 0] + 1.0
     ex_heights = ex_rois[:, 3] - ex_rois[:, 1] + 1.0
@@ -21,6 +21,7 @@ def bbox_transform(ex_rois, gt_rois):
     gt_ctr_x = gt_rois[:, 0] + 0.5 * gt_widths
     gt_ctr_y = gt_rois[:, 1] + 0.5 * gt_heights
 
+    # These are t_{x,y,w,h} mentioned in R-CNN supplementary material
     targets_dx = (gt_ctr_x - ex_ctr_x) / ex_widths
     targets_dy = (gt_ctr_y - ex_ctr_y) / ex_heights
     targets_dw = np.log(gt_widths / ex_widths)
