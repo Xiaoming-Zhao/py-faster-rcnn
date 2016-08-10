@@ -16,7 +16,7 @@ import cv2
 import caffe
 from fast_rcnn.nms_wrapper import nms
 import cPickle
-from utils.blob import im_list_to_blob
+from utils.blob import im_list_to_blobt
 import os
 
 def _get_image_blob(im):
@@ -40,6 +40,7 @@ def _get_image_blob(im):
     processed_ims = []
     im_scale_factors = []
 
+    # generate several anchors ???
     for target_size in cfg.TEST.SCALES:
         im_scale = float(target_size) / float(im_size_min)
         # Prevent the biggest axis from being more than MAX_SIZE
